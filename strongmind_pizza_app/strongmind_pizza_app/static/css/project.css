@@ -1,0 +1,27 @@
+/* These styles are generated from project.scss. */
+
+.alert-debug {
+  color: black;
+  background-color: white;
+  border-color: #d6e9c6;
+}
+
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+.navbar-brand {
+  font-weight:bolder;
+  font-size: 1.5em;
+}
+
+.btn-primary{
+  background-color: #fdb515;
+  border:none;
+}
+
+.btn-primary:hover{
+  background-color: #fdc344;
+}
