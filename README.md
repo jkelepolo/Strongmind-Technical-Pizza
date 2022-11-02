@@ -33,11 +33,23 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 ### Setting Up Your Users
 
--   To create a **normal user account**, just go to Sign Up and fill out the form. 
+-   To login as a **Pizza Chef** use these credentials under the sign-in page:
+
+        User: PizzaChef
+        Password: strongmindchef
+
+-   To login as a **Pizza Store Owner** use these credentials under the sign-in page:
+
+        User: StoreOwner
+        Password: strongmindown
 
 -   To create a **superuser account**, use this command:
 
         $ python manage.py createsuperuser
+
+-   As a **superuser** you can manage accounts and permissions under the admin panel:
+
+        appdomain.com/admin
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
