@@ -27,7 +27,7 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 - Using your anaconda environment or python venv:
 
-        $ cd ..\strongmind_pizza_app\
+        $ cd ../strongmind_pizza_app/
         $ pip install -r requirements/local.txt
 
 
