@@ -8,6 +8,6 @@ from .views import *
 
 app_name = "pizza"
 urlpatterns = [
-   path("build/", TemplateView.as_view(template_name="pizza/pizza.html"), name="pizza"),
+   path("build/", vPizzaBuild, name="pizza"),
    path("toppings/", TemplateView.as_view(template_name="pizza/toppings.html"), name="pizza"),
 ]

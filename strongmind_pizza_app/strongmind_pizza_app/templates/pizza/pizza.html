@@ -4,16 +4,56 @@
 
 {% block content %}
 
-<div class="d-inline">
-    <select class="form-select form-select-sm" multiple>
+<div class="container">
+    <div id="id_pizza_container">
 
-    </select> 
+        {% for pizza in pizzas %}
+
+
+            <div id="id_{{pizza.masterpizzaname}}" name="pizza_{{pizza.masterpizzaname}}">
+
+                <form class="form-inline" method="post" action="pizza/api/update">
+                    <input type="hidden" name="masterpizzaid" value="{{pizza.masterpizzaid}}">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Pizza Name</span>
+                        <input type="text" value="{{pizza.masterpizzaname}}" name="masterpizzaname" class="form-control" placeholder="Pizza Name" aria-label="PizzaName" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="accordion accordion-flush" id="toppingsAccordian">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                  Toppings
+                                </button>
+                            </h2>
+
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                {% for topping in toppings %}
+
+                                    
+                                    <input class="form-check-input" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}">
+                                    <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}">
+                                        {{topping.mastertoppingname}} 
+                                    </label>
+                                    <br>
+
+
+                                    
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </form>       
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
 </div>
-
-
-<div class="d-inline">
-        
-</div>
-
 
 {% endblock content %}

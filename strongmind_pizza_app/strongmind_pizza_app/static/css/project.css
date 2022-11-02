@@ -25,3 +25,7 @@
 .btn-primary:hover{
   background-color: #fdc344;
 }
+
+.accordion {
+  border: 1px solid rgb(180, 180, 180);
+}

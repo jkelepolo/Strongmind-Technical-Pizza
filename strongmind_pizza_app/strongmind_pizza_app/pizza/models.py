@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# TABLES
 
 class Masterpizzas(models.Model):
     masterpizzaid = models.AutoField(unique=True, primary_key=True)
@@ -27,3 +27,16 @@ class Pizzacomponents(models.Model):
     class Meta:
         managed = False
         db_table = 'PizzaComponents'
+
+# VIEWS
+
+class Vucompletepizza(models.Model):
+    pizzacomponentid = models.IntegerField(primary_key=True)
+    mastertoppingid = models.IntegerField(blank=True, null=True)
+    masterpizzaid = models.IntegerField(blank=True, null=True)
+    masterpizzaname = models.TextField(blank=True, null=True)
+    mastertoppingname = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False  # Created from a view. Don't remove.
+        db_table = 'vuCompletePizza'
