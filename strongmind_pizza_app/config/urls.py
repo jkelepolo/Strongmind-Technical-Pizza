@@ -15,7 +15,9 @@ urlpatterns = [
     # User management
     path("users/", include("strongmind_pizza_app.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
+    # Pizza pages
+    path("pizza/", include("strongmind_pizza_app.pizza.urls", namespace="pizza")),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

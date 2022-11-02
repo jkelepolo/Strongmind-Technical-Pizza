@@ -8,19 +8,23 @@
             {% if request.user.is_authenticated %}
                 
                 <h1>Welcome, {{request.user.username}}</h1>
-                
+
+                {% for group in request.user.groups.all %}
+                    <label>{{group.name}}</label>
+                {% endfor %}
+                <br>
                
                 {% for group in request.user.groups.all %}
                     {% if group.name == "Pizza Chef" or group.name == "Pizza Store Owner"%}
                     
                     
                     
-                    <a class="btn btn-primary" href="/pizza/" role="button">Manage Pizzas</a>
+                    <a class="btn btn-primary" href="/pizza/build/" role="button">Manage Pizzas</a>
 
                     {% endif %}
 
                     {% if group.name == "Pizza Store Owner"%}
-                        <a class="btn btn-primary" href="/toppings/" role="button">Manage Toppings</a>
+                        <a class="btn btn-primary" href="/pizza/toppings/" role="button">Manage Toppings</a>
                     {% endif %}
 
                 {% endfor %}
