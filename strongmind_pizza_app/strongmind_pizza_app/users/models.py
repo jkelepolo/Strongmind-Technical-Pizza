@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth import models
-from django.db.models import CharField
+from django.db import models
+from django.db.models import *
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -28,8 +28,8 @@ class User(AbstractUser):
 
 
 class Masterpizzas(models.Model):
-    masterpizzaid = models.AutoField(unique=True)
-    masterpizzaname = models.TextField(unique=True)
+    masterpizzaid = models.AutoField(unique=True, primary_key=True)
+    masterpizzaname = models.TextField()
 
     class Meta:
         managed = False
@@ -37,9 +37,18 @@ class Masterpizzas(models.Model):
 
 
 class Mastertoppings(models.Model):
-    mastertoppingid = models.AutoField(unique=True)
-    mastertoppingname = models.TextField(unique=True)
+    mastertoppingid = models.AutoField(unique=True, primary_key=True)
+    mastertoppingname = models.TextField()
 
     class Meta:
         managed = False
         db_table = 'MasterToppings'
+
+class Pizzacomponents(models.Model):
+    pizzacomponentid = models.AutoField(unique=True, primary_key=True)
+    masterpizzaid = models.IntegerField()
+    mastertoppingid = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'PizzaComponents'
