@@ -278,6 +278,7 @@ SOCIALACCOUNT_ADAPTER = "strongmind_pizza_app.users.adapters.SocialAccountAdapte
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 SOCIALACCOUNT_FORMS = {"signup": "strongmind_pizza_app.users.forms.UserSocialSignupForm"}
 
+LOGIN_REDIRECT_URL = "/"
 
 # Your stuff...
 # ------------------------------------------------------------------------------

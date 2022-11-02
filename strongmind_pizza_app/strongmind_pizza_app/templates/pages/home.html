@@ -1,1 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+            
+            {% if request.user.is_authenticated %}
+
+                <h1>Logged in</h1>
+        
+            {% else %}
+        
+                <h1>Please Sign-In</h1>
+
+                <br>
+                <p>Demo Pizza Chef</p>
+                <code>User: PizzaChef</code>
+                <br>
+                <code>Password: strongmindchef</code>
+
+                <br><br>
+                <p>Demo Pizza Store Owner</p>
+                <code>User: StoreOwner</code>
+                <br>
+                <code>Password: strongmindown</code>
+
+                <br><br><a class="btn btn-primary" href="/accounts/login/" role="button">Continue to Sign-In</a>
+
+            {% endif %}
+        
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock content %}
