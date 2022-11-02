@@ -6,9 +6,25 @@
         <div class="col-md-6 offset-md-3 text-center">
             
             {% if request.user.is_authenticated %}
+                
+                <h1>Welcome, {{request.user.username}}</h1>
+                
+               
+                {% for group in request.user.groups.all %}
+                    {% if group.name == "Pizza Chef" or group.name == "Pizza Store Owner"%}
+                    
+                    
+                    
+                    <a class="btn btn-primary" href="/pizza/" role="button">Manage Pizzas</a>
 
-                <h1>Logged in</h1>
-        
+                    {% endif %}
+
+                    {% if group.name == "Pizza Store Owner"%}
+                        <a class="btn btn-primary" href="/toppings/" role="button">Manage Toppings</a>
+                    {% endif %}
+
+                {% endfor %}
+                
             {% else %}
         
                 <h1>Please Sign-In</h1>
