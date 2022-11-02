@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %} Strongmind Pizza - Home {% endblock title %}
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -16,11 +19,7 @@
                
                 {% for group in request.user.groups.all %}
                     {% if group.name == "Pizza Chef" or group.name == "Pizza Store Owner"%}
-                    
-                    
-                    
-                    <a class="btn btn-primary" href="/pizza/build/" role="button">Manage Pizzas</a>
-
+                        <a class="btn btn-primary" href="/pizza/build/" role="button">Manage Pizzas</a>
                     {% endif %}
 
                     {% if group.name == "Pizza Store Owner"%}
