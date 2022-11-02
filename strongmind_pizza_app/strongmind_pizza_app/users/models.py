@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import models
 from django.db.models import CharField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -24,3 +25,21 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+
+class Masterpizzas(models.Model):
+    masterpizzaid = models.AutoField(unique=True)
+    masterpizzaname = models.TextField(unique=True)
+
+    class Meta:
+        managed = False
+        db_table = 'MasterPizzas'
+
+
+class Mastertoppings(models.Model):
+    mastertoppingid = models.AutoField(unique=True)
+    mastertoppingname = models.TextField(unique=True)
+
+    class Meta:
+        managed = False
+        db_table = 'MasterToppings'
