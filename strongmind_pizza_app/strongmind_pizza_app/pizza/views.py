@@ -36,14 +36,23 @@ def vPizzaBuild(request):
 
 # API Functions
 
+# Pizza API
 @permission_required(perm=["pizza.masterpizzas.can_change_masterpizzas","pizza.masterpizzas.can_change_pizzacomponents"], login_url="/")
 def apiUpdatePizza(request):
     if request.method == "POST":
         data = {key:val for key,val in request.POST.items()}
 
-        Masterpizzas.objects.update(masterpizzaname=data["masterpizzaname"])
-        
-        data["checkbox_groups"] = json.loads(data["checkbox_groups"])
+        if "masterpizzaname" in data:
+            if data["masterpizzaname"].strip() == "":
+                return JsonResponse({"toast":["danger", "Name cannot be empty!"]}, status=200)
+            for pizza in Masterpizzas.objects.all().values():
+                if data["masterpizzaname"].lower().strip() == pizza["masterpizzaname"].lower().strip() and str(data["masterpizzaid"]) != str(pizza["masterpizzaid"]):
+                    return JsonResponse({"toast":["danger", "No duplicate names allowed!"]}, status=200)
+
+            Masterpizzas.objects.update(masterpizzaname=data["masterpizzaname"].strip())
+
+        if "checkbox_groups" in data:
+            data["checkbox_groups"] = json.loads(data["checkbox_groups"])
     
         if "Toppings" in data:
             components = Pizzacomponents.objects.filter(masterpizzaid=data["masterpizzaid"]).values()
@@ -75,6 +84,18 @@ def apiDeletePizza(request):
 @permission_required(perm=["pizza.masterpizzas.can_change_masterpizzas","pizza.masterpizzas.can_change_pizzacomponents"], login_url="/")
 def apiNewPizza(request):
     if request.method == "POST":
-        NewPizza = Masterpizzas(masterpizzaname="New Pizza")
-        NewPizza.save()
+        data = {key:val for key,val in request.POST.items()}
+
+        print(data)
+        if "masterpizzaname" in data:
+            if data["masterpizzaname"].strip() == "":
+                return JsonResponse({"toast":["danger", "Name cannot be empty!"]}, status=200)
+            for pizza in Masterpizzas.objects.all().values():
+                if data["masterpizzaname"].lower().strip() == pizza["masterpizzaname"].lower().strip():
+                    return JsonResponse({"toast":["danger", "No duplicate names allowed!"]}, status=200)
+
+
+            NewPizza = Masterpizzas(masterpizzaname=data["masterpizzaname"].strip())
+            NewPizza.save()
+
     return JsonResponse({"refresh":""}, status=200)
