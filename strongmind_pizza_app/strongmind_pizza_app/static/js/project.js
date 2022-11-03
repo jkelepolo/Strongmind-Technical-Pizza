@@ -43,13 +43,28 @@ function APICall(apirequest="", form, confirmation=""){
         
         // on success
         success: function (response) {
-            $(form).append("<div class='alert alert-dismissible alert-success'>Action Success<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>");
             console.log(response);
+
+            if (typeof response == 'object') {
+
+                if ("toast" in response) {
+                    var alert_type = response["toast"][0]
+                    var alert_message = response["toast"][1]
+
+                    $(form).append("<div class='alert alert-"+alert_type+" alert-dismissible'>"+alert_message+"<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>");
+                
+                }
+                else{
+                 $(form).append("<div class='alert alert-dismissible alert-success'>Action Success<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>");
+
+                }
+
+            }
 
             if("refresh" in response){
                 window.location.href = window.location.href;
           
-              } 
+            } 
 
         },
         // on error
