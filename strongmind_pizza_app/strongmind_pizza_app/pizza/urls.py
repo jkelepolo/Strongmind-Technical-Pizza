@@ -8,6 +8,12 @@ from .views import *
 
 app_name = "pizza"
 urlpatterns = [
+   # Pages
    path("build/", vPizzaBuild, name="pizza"),
    path("toppings/", TemplateView.as_view(template_name="pizza/toppings.html"), name="pizza"),
+
+   #API Calls
+   path("api/updatepizza/", apiUpdatePizza, name="updatepizza"),
+   path("api/deletepizza/", apiDeletePizza, name="deleteizza"),
+   path("api/newpizza/", apiNewPizza, name="newpizza"),
 ]

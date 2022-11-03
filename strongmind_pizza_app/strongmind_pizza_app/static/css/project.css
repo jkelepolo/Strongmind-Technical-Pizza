@@ -29,3 +29,7 @@
 .accordion {
   border: 1px solid rgb(180, 180, 180);
 }
+
+.btn{
+  margin: 10px;
+}

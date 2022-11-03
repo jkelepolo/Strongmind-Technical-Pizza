@@ -5,6 +5,11 @@
 {% block content %}
 
 <div class="container">
+    <form class="form text-center" method="post" action="/pizza/api/newpizza/">
+        {% csrf_token %}
+        <button type="button" onclick="APICall(apirequest='/pizza/api/newpizza/', this.form, 'Are you sure you want to create a new pizza?');" name="deletepizza" class="btn btn-success" role="button">New Pizza</button>
+    </form>
+    
     <div id="id_pizza_container">
 
         {% for pizza in pizzas %}
@@ -12,39 +17,51 @@
 
             <div id="id_{{pizza.masterpizzaname}}" name="pizza_{{pizza.masterpizzaname}}">
 
-                <form class="form-inline" method="post" action="pizza/api/update">
+                <form class="form-inline" method="post" action="/pizza/api/updatepizza/">
+                    {% csrf_token %}
                     <input type="hidden" name="masterpizzaid" value="{{pizza.masterpizzaid}}">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Pizza Name</span>
                         <input type="text" value="{{pizza.masterpizzaname}}" name="masterpizzaname" class="form-control" placeholder="Pizza Name" aria-label="PizzaName" aria-describedby="basic-addon1">
                     </div>
 
-                    <div class="accordion accordion-flush" id="toppingsAccordian">
+                    <div class="d-table-cell accordion accordion-flush" id="toppingsAccordian_{{pizza.masterpizzaid}}">
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            <h2 class="accordion-header" id="flush-headingOne_{{pizza.masterpizzaid}}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#toppingsAccordian_{{pizza.masterpizzaid}}" aria-expanded="false" aria-controls="toppingsAccordian_{{pizza.masterpizzaid}}">
                                   Toppings
                                 </button>
                             </h2>
 
-                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div id="toppingsAccordian_{{pizza.masterpizzaid}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 {% for topping in toppings %}
 
-                                    
-                                    <input class="form-check-input" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}">
-                                    <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}">
-                                        {{topping.mastertoppingname}} 
-                                    </label>
-                                    <br>
+                                    {% if topping.mastertoppingid in pizza.toppings %}
+                                        <input name="Toppings" class="form-check-input" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}" checked="checked">
+                                        <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}">
+                                            {{topping.mastertoppingname}} 
+                                        </label>
+                                        <br>
+                                    {% else %}
+                                        <input name="Toppings" class="form-check-input" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}">
+                                        <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}">
+                                            {{topping.mastertoppingname}} 
+                                        </label>
+                                        <br>
+                                    {% endif %}
 
 
-                                    
                                 {% endfor %}
                             </div>
 
                         </div>
 
                     </div>
+                    <div class="d-table-cell">
+                        <button type="button" onclick="APICall(apirequest='/pizza/api/updatepizza/', this.form);" name="updatepizza" class="btn btn-primary" role="button">Update Pizza</button>
+                        <button type="button" onclick="APICall(apirequest='/pizza/api/deletepizza/', this.form, 'Are you sure you want to delete this pizza?');" name="deletepizza" class="btn btn-danger" role="button">Delete Pizza</button>
+                    </div>
+                    
 
                 </form>       
 
