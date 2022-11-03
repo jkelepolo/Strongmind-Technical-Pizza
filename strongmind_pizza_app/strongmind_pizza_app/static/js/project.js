@@ -12,11 +12,11 @@ function APICall(apirequest="", form, confirmation=""){
 
     var ajax_data = $(form).serializeArray();
 
-    if ($(".checkbox-group:checked").length > 0){
+    if ($(form).find(".checkbox-group:checked").length > 0){
 
         var groups = {}
 
-        $(".checkbox-group:checked").each(function(){
+        $(form).find(".checkbox-group:checked").each(function(){
 
             if ($(this).attr("name") in groups){
                 groups[$(this).attr("name")].push($(this).val());

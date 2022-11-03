@@ -27,7 +27,7 @@ def vPizzaBuild(request):
     print(complete_pizzas)
 
     context = {
-        "pizzas": complete_pizzas,
+        "pizzas": complete_pizzas[::-1],
         "components":pizza_components,
         "toppings":all_toppings,
     }
@@ -41,6 +41,11 @@ def vPizzaBuild(request):
 def apiUpdatePizza(request):
     if request.method == "POST":
         data = {key:val for key,val in request.POST.items()}
+        print(data)
+        
+        if "checkbox_groups" in data:
+            data["checkbox_groups"] = json.loads(data["checkbox_groups"])
+
 
         if "masterpizzaname" in data:
             if data["masterpizzaname"].strip() == "":
@@ -49,18 +54,19 @@ def apiUpdatePizza(request):
                 if data["masterpizzaname"].lower().strip() == pizza["masterpizzaname"].lower().strip() and str(data["masterpizzaid"]) != str(pizza["masterpizzaid"]):
                     return JsonResponse({"toast":["danger", "No duplicate names allowed!"]}, status=200)
 
-            Masterpizzas.objects.update(masterpizzaname=data["masterpizzaname"].strip())
+            Masterpizzas.objects.filter(masterpizzaid=data["masterpizzaid"]).update(masterpizzaname=data["masterpizzaname"].strip())
 
-        if "checkbox_groups" in data:
-            data["checkbox_groups"] = json.loads(data["checkbox_groups"])
+
     
         if "Toppings" in data:
             components = Pizzacomponents.objects.filter(masterpizzaid=data["masterpizzaid"]).values()
-            saved_toppings = [str(component["mastertoppingid"]) for component in components]
+            saved_toppings = [str(component["mastertoppingid"]) for component in copy.deepcopy(components)]
 
+            
             for component in components:
-                print(component["mastertoppingid"], data["checkbox_groups"]["Toppings"])
                 if str(component["mastertoppingid"]) not in data["checkbox_groups"]["Toppings"]:
+                    print(component["mastertoppingid"], data["checkbox_groups"]["Toppings"])
+
                     Pizzacomponents.objects.filter(pizzacomponentid=component["pizzacomponentid"]).delete()
             
             for topping in data["checkbox_groups"]["Toppings"]:

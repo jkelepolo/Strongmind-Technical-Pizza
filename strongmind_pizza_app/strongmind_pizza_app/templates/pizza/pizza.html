@@ -17,14 +17,14 @@
 
     </form>
     
-    <div id="id_pizza_container" style="overflow: scroll; height:900px; width:auto;">
+    <div id="id_pizza_container" style="overflow: auto; height:900px; width:auto;">
 
         {% for pizza in pizzas %}
 
 
             <div id="id_{{pizza.masterpizzaname}}" name="pizza_{{pizza.masterpizzaname}}" style=" margin-top:50px; border-bottom: 5px solid rgb(182, 182, 182);">
 
-                <form class="form-inline" method="post" action="/pizza/api/updatepizza/">
+                <form id="pizzaform_{{pizza.masterpizzaid}}" class="form-inline" method="post" action="/pizza/api/updatepizza/">
                     {% csrf_token %}
                     <input type="hidden" name="masterpizzaid" value="{{pizza.masterpizzaid}}">
                     <div class="input-group mb-3">
