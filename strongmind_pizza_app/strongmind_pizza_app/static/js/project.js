@@ -10,8 +10,30 @@ function APICall(apirequest="", form, confirmation=""){
         }
     }
 
+    var ajax_data = $(form).serializeArray();
+
+    if ($(".checkbox-group:checked").length > 0){
+
+        var groups = {}
+
+        $(".checkbox-group:checked").each(function(){
+
+            if ($(this).attr("name") in groups){
+                groups[$(this).attr("name")].push($(this).val());
+            }
+            else{
+                groups[$(this).attr("name")] = [];
+                groups[$(this).attr("name")].push($(this).val());
+            }
+
+        });
+
+        ajax_data.push({name:"checkbox_groups", value:JSON.stringify(groups)});
+    
+    }
+
     $.ajax({
-        data: $(form).serialize(), // get the form data
+        data: ajax_data, // get the form data
         type: "POST",
         url: apirequest,
         complete: function (response) {

@@ -37,13 +37,13 @@
                                 {% for topping in toppings %}
 
                                     {% if topping.mastertoppingid in pizza.toppings %}
-                                        <input name="Toppings" class="form-check-input" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}" checked="checked">
+                                        <input name="Toppings" class="form-check-input checkbox-group" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}" checked="checked">
                                         <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}">
                                             {{topping.mastertoppingname}} 
                                         </label>
                                         <br>
                                     {% else %}
-                                        <input name="Toppings" class="form-check-input" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}">
+                                        <input name="Toppings" class="form-check-input checkbox-group" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}">
                                         <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}">
                                             {{topping.mastertoppingname}} 
                                         </label>

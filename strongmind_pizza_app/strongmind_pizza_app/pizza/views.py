@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import permission_required
 from .models import *
 from django.http import JsonResponse
 import copy
+import json
 
 # VIEWS
 
@@ -41,22 +42,25 @@ def apiUpdatePizza(request):
         data = {key:val for key,val in request.POST.items()}
 
         Masterpizzas.objects.update(masterpizzaname=data["masterpizzaname"])
-
+        
+        data["checkbox_groups"] = json.loads(data["checkbox_groups"])
+    
         if "Toppings" in data:
             components = Pizzacomponents.objects.filter(masterpizzaid=data["masterpizzaid"]).values()
             saved_toppings = [str(component["mastertoppingid"]) for component in components]
 
             for component in components:
-                if str(component["mastertoppingid"]) not in data["Toppings"]:
-                    print(component["mastertoppingid"], data["Toppings"])
+                print(component["mastertoppingid"], data["checkbox_groups"]["Toppings"])
+                if str(component["mastertoppingid"]) not in data["checkbox_groups"]["Toppings"]:
                     Pizzacomponents.objects.filter(pizzacomponentid=component["pizzacomponentid"]).delete()
             
-            for topping in data["Toppings"]:
+            for topping in data["checkbox_groups"]["Toppings"]:
                 if topping not in saved_toppings:
                     new_component = Pizzacomponents(masterpizzaid=data["masterpizzaid"], mastertoppingid=topping)
                     new_component.save()
+        else:
+            Pizzacomponents.objects.filter(masterpizzaid=data["masterpizzaid"]).delete()
 
-        print(request.POST)
     return JsonResponse({}, status=200)
 
 @permission_required(perm=["pizza.masterpizzas.can_change_masterpizzas","pizza.masterpizzas.can_change_pizzacomponents"], login_url="/")
