@@ -7,15 +7,22 @@
 <div class="container">
     <form class="form text-center" method="post" action="/pizza/api/newpizza/">
         {% csrf_token %}
-        <button type="button" onclick="APICall(apirequest='/pizza/api/newpizza/', this.form, 'Are you sure you want to create a new pizza?');" name="deletepizza" class="btn btn-success" role="button">New Pizza</button>
+        <div class="input-group mb-3">
+
+            <span class="input-group-text" id="basic-addon1">New Pizza Name</span>
+            <input type="text" name="masterpizzaname" class="form-control" placeholder="New Pizza Name" aria-label="PizzaName" aria-describedby="basic-addon1" required>
+            <button type="button" onclick="APICall(apirequest='/pizza/api/newpizza/', this.form, 'Are you sure you want to create a new pizza?');" name="deletepizza" class="btn btn-success" role="button">New Pizza</button>
+    
+        </div>
+
     </form>
     
-    <div id="id_pizza_container">
+    <div id="id_pizza_container" style="overflow: scroll; height:900px; width:auto;">
 
         {% for pizza in pizzas %}
 
 
-            <div id="id_{{pizza.masterpizzaname}}" name="pizza_{{pizza.masterpizzaname}}">
+            <div id="id_{{pizza.masterpizzaname}}" name="pizza_{{pizza.masterpizzaname}}" style=" margin-top:50px; border-bottom: 5px solid rgb(182, 182, 182);">
 
                 <form class="form-inline" method="post" action="/pizza/api/updatepizza/">
                     {% csrf_token %}
@@ -58,8 +65,8 @@
 
                     </div>
                     <div class="d-table-cell">
-                        <button type="button" onclick="APICall(apirequest='/pizza/api/updatepizza/', this.form);" name="updatepizza" class="btn btn-primary" role="button">Update Pizza</button>
-                        <button type="button" onclick="APICall(apirequest='/pizza/api/deletepizza/', this.form, 'Are you sure you want to delete this pizza?');" name="deletepizza" class="btn btn-danger" role="button">Delete Pizza</button>
+                        <button style="margin:10px;" type="button" onclick="APICall(apirequest='/pizza/api/updatepizza/', this.form);" name="updatepizza" class="btn btn-primary" role="button">Update Pizza</button>
+                        <button style="margin:10px;" type="button" onclick="APICall(apirequest='/pizza/api/deletepizza/', this.form, 'Are you sure you want to delete this pizza?');" name="deletepizza" class="btn btn-danger" role="button">Delete Pizza</button>
                     </div>
                     
 
