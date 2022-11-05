@@ -47,7 +47,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(ROOT_DIR, 'strongmind.sqlite3'),
-        "ATOMIC_REQUESTS":True,
+        'USER':'',
+        'PASSWORD':'',
+        'HOST':'',     
+        'PORT':'',
+        'ATOMIC_REQUESTS':True,
         }
 }
 

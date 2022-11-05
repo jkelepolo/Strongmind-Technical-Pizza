@@ -7,6 +7,7 @@ class Masterpizzas(models.Model):
     masterpizzaname = models.TextField()
 
     class Meta:
+        app_label = "pizza"
         managed = False
         db_table = 'MasterPizzas'
 
@@ -16,6 +17,7 @@ class Mastertoppings(models.Model):
     mastertoppingname = models.TextField()
 
     class Meta:
+        app_label = "pizza"
         managed = False
         db_table = 'MasterToppings'
 
@@ -25,6 +27,7 @@ class Pizzacomponents(models.Model):
     mastertoppingid = models.IntegerField()
 
     class Meta:
+        app_label = "pizza"
         managed = False
         db_table = 'PizzaComponents'
 
@@ -38,5 +41,6 @@ class Vucompletepizza(models.Model):
     mastertoppingname = models.TextField(blank=True, null=True)
 
     class Meta:
+        app_label = "pizza"
         managed = False  # Created from a view. Don't remove.
         db_table = 'vuCompletePizza'
