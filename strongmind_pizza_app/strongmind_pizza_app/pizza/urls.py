@@ -10,10 +10,17 @@ app_name = "pizza"
 urlpatterns = [
    # Pages
    path("build/", vPizzaBuild, name="pizza"),
-   path("toppings/", TemplateView.as_view(template_name="pizza/toppings.html"), name="pizza"),
+   path("toppings/", vToppings, name="pizza"),
 
    #API Calls
+
+   # Pizza API
    path("api/updatepizza/", apiUpdatePizza, name="updatepizza"),
    path("api/deletepizza/", apiDeletePizza, name="deleteizza"),
    path("api/newpizza/", apiNewPizza, name="newpizza"),
+
+   # Topping API
+   path("api/updatetopping/", apiUpdateTopping, name="updatetopping"),
+   path("api/deletetopping/", apiDeleteTopping, name="deletetopping"),
+   path("api/newtopping/", apiNewTopping, name="newtopping"),
 ]

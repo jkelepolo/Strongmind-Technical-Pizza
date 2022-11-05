@@ -5,6 +5,46 @@
 {% block content %}
 
 <div class="container">
+    <form class="form text-center" method="post" action="/pizza/api/newtopping/">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+
+            <span class="input-group-text" id="basic-addon1">New Topping Name</span>
+            <input type="text" name="mastertoppingname" class="form-control" placeholder="New Topping Name" aria-label="Topping" aria-describedby="basic-addon1" required>
+            <button type="button" onclick="APICall(apirequest='/pizza/api/newtopping/', this.form, 'Are you sure you want to create a new topping?');" name="newtopping" class="btn btn-success" role="button">New Topping</button>
+    
+        </div>
+
+    </form>
+    
+    <div id="id_topping_container" style="overflow: auto; height:850px; width:auto;">
+
+        {% for topping in toppings %}
+
+
+            <div id="id_{{topping.mastertoppingname}}" name="topping_{{topping.mastertoppingname}}" style=" margin-top:50px; border-bottom: 5px solid rgb(182, 182, 182);">
+
+                <form id="toppingform_{{topping.mastertoppingid}}" class="form-inline" method="post" action="/pizza/api/updatetopping/">
+                    {% csrf_token %}
+                    <input type="hidden" name="mastertoppingid" value="{{topping.mastertoppingid}}">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Topping Name</span>
+                        <input type="text" value="{{topping.mastertoppingname}}" name="mastertoppingname" class="form-control" placeholder="Topping Name" aria-label="ToppingName" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="d-table-cell">
+                        <button style="margin:10px;" type="button" onclick="APICall(apirequest='/pizza/api/updatetopping/', this.form);" name="updatetopping" class="btn btn-primary" role="button">Update Topping</button>
+                        <button style="margin:10px;" type="button" onclick="APICall(apirequest='/pizza/api/deletetopping/', this.form, 'Are you sure you want to delete this topping?');" name="deletetopping" class="btn btn-danger" role="button">Delete Topping</button>
+                    </div>
+                    
+
+                </form>       
+
+            </div>
+
+        {% endfor %}
+
+    </div>
 
 </div>
 

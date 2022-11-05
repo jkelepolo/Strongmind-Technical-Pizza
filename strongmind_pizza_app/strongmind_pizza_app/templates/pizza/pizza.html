@@ -11,13 +11,13 @@
 
             <span class="input-group-text" id="basic-addon1">New Pizza Name</span>
             <input type="text" name="masterpizzaname" class="form-control" placeholder="New Pizza Name" aria-label="PizzaName" aria-describedby="basic-addon1" required>
-            <button type="button" onclick="APICall(apirequest='/pizza/api/newpizza/', this.form, 'Are you sure you want to create a new pizza?');" name="deletepizza" class="btn btn-success" role="button">New Pizza</button>
+            <button type="button" onclick="APICall(apirequest='/pizza/api/newpizza/', this.form, 'Are you sure you want to create a new pizza?');" name="newpizza" class="btn btn-success" role="button">New Pizza</button>
     
         </div>
 
     </form>
     
-    <div id="id_pizza_container" style="overflow: auto; height:900px; width:auto;">
+    <div id="id_pizza_container" style="overflow: auto; height:850px; width:auto;">
 
         {% for pizza in pizzas %}
 
