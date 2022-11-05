@@ -52,6 +52,11 @@ DATABASES = {
         'HOST':'',     
         'PORT':'',
         'ATOMIC_REQUESTS':True,
+        'TEST':{
+
+            'NAME': os.path.join(ROOT_DIR, 'strongmind.sqlite3'),
+
+        },
         }
 }
 
