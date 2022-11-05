@@ -24,7 +24,7 @@ def vPizzaBuild(request):
         
         complete_pizzas.append(out_pizza)
 
-    print(complete_pizzas)
+  
 
     context = {
         "pizzas": complete_pizzas[::-1],
@@ -54,7 +54,7 @@ def apiUpdatePizza(request):
         if "checkbox_groups" in data:
             data["checkbox_groups"] = json.loads(data["checkbox_groups"])
         
-        print(data)
+
 
         if "masterpizzaname" in data:
             if data["masterpizzaname"].strip() == "":
@@ -74,7 +74,6 @@ def apiUpdatePizza(request):
             
             for component in components:
                 if str(component["mastertoppingid"]) not in data["checkbox_groups"]["Toppings"]:
-                    print(component["mastertoppingid"], data["checkbox_groups"]["Toppings"])
 
                     Pizzacomponents.objects.filter(pizzacomponentid=component["pizzacomponentid"]).delete()
             
@@ -101,7 +100,6 @@ def apiNewPizza(request):
     if request.method == "POST":
         data = {key:val for key,val in request.POST.items()}
 
-        print(data)
         if "masterpizzaname" in data:
             if data["masterpizzaname"].strip() == "":
                 return JsonResponse({"toast":["danger", "Name cannot be empty!"]}, status=200)
@@ -140,7 +138,7 @@ def apiNewTopping(request):
 
     if request.method == "POST":
         data = {key:val for key,val in request.POST.items()}
-
+        
         if data["mastertoppingname"].strip() == "":
             return JsonResponse({"toast":["danger", "Name cannot be empty!"]}, status=200)
     
@@ -148,8 +146,11 @@ def apiNewTopping(request):
             if data["mastertoppingname"].lower().strip() == topping["mastertoppingname"].lower().strip():
                 return JsonResponse({"toast":["danger", "No duplicate names allowed!"]}, status=200)
 
+        
         NewTopping = Mastertoppings(mastertoppingname=data["mastertoppingname"].strip())
         NewTopping.save()
+        
+
 
     return JsonResponse({"refresh":""}, status=200)
 
