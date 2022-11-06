@@ -85,7 +85,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # STATIC
 # ------------------------
 STATIC_ROOT = os.path.join(ROOT_DIR, 'strongmind_pizza_app/static')
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 WHITENOISE_MANIFEST_STRICT = False
