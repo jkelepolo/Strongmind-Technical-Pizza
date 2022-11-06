@@ -1,3 +1,4 @@
 # This file is expected by Heroku.
 
+-r strongmind_pizza_app/requirements/local.txt
 -r strongmind_pizza_app/requirements/production.txt
