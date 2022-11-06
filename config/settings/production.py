@@ -85,9 +85,9 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # STATIC
 # ------------------------
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+WHITENOISE_MANIFEST_STRICT = False
 # MEDIA
 # ------------------------------------------------------------------------------
-DEFAULT_FILE_STORAGE = "strongmind_pizza_app.utils.storages.MediaRootS3Boto3Storage"
 # MEDIA_URL = f"https://{aws_s3_domain}/media/"
 
 # EMAIL
