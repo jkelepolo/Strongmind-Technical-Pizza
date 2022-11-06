@@ -158,6 +158,7 @@ if not DEBUG:
     # ------------------------
     STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles')
     STATIC_URL = '/static/'
+    STATICFILES_DIRS = [str(APPS_DIR / "static")]
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     WHITENOISE_MANIFEST_STRICT = False
