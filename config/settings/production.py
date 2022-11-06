@@ -82,13 +82,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#cloudfront
 # AWS_S3_CUSTOM_DOMAIN = env("DJANGO_AWS_S3_CUSTOM_DOMAIN", default=None)
 # aws_s3_domain = AWS_S3_CUSTOM_DOMAIN or f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-# STATIC
-# ------------------------
-STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles')
-STATIC_URL = '/static/'
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-WHITENOISE_MANIFEST_STRICT = False
 # MEDIA
 # ------------------------------------------------------------------------------
 # MEDIA_URL = f"https://{aws_s3_domain}/media/"
