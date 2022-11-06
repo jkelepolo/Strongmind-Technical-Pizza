@@ -64,5 +64,5 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 The following details how to deploy this application.
 
 ### Heroku
-
+https://strongmind-technical-pizza.herokuapp.com/
 See detailed [cookiecutter-django Heroku documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-on-heroku.html).
