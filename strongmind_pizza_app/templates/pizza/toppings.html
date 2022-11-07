@@ -9,9 +9,9 @@
         {% csrf_token %}
         <div class="input-group mb-3">
 
-            <span class="input-group-text" id="basic-addon1">New Topping Name</span>
-            <input type="text" name="mastertoppingname" class="form-control" placeholder="New Topping Name" aria-label="Topping" aria-describedby="basic-addon1" required>
-            <button type="button" onclick="APICall(apirequest='/pizza/api/newtopping/', this.form, 'Are you sure you want to create a new topping?');" name="newtopping" class="btn btn-success" role="button">New Topping</button>
+            <span class="input-group-text" id="basic-addon1">New Topping Name: </span>
+            <input type="text" name="mastertoppingname" class="form-control" placeholder="Enter Name Here" aria-label="Topping" aria-describedby="basic-addon1" required>
+            <button type="button" onclick="APICall(apirequest='/pizza/api/newtopping/', this.form, 'Are you sure you want to create a new topping?');" name="newtopping" class="btn btn-success" role="button">Create New Topping</button>
     
         </div>
 
@@ -28,7 +28,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="mastertoppingid" value="{{topping.mastertoppingid}}">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Topping Name</span>
+                        <span class="input-group-text" id="basic-addon1">Topping Name:</span>
                         <input type="text" value="{{topping.mastertoppingname}}" name="mastertoppingname" class="form-control" placeholder="Topping Name" aria-label="ToppingName" aria-describedby="basic-addon1">
                     </div>
 

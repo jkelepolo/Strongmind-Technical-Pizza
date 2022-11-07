@@ -9,9 +9,9 @@
         {% csrf_token %}
         <div class="input-group mb-3">
 
-            <span class="input-group-text" id="basic-addon1">New Pizza Name</span>
-            <input type="text" name="masterpizzaname" class="form-control" placeholder="New Pizza Name" aria-label="PizzaName" aria-describedby="basic-addon1" required>
-            <button type="button" onclick="APICall(apirequest='/pizza/api/newpizza/', this.form, 'Are you sure you want to create a new pizza?');" name="newpizza" class="btn btn-success" role="button">New Pizza</button>
+            <span class="input-group-text" id="basic-addon1">New Pizza Name: </span>
+            <input type="text" name="masterpizzaname" class="form-control" placeholder="Enter Name Here" aria-label="PizzaName" aria-describedby="basic-addon1" required>
+            <button type="button" onclick="APICall(apirequest='/pizza/api/newpizza/', this.form, 'Are you sure you want to create a new pizza?');" name="newpizza" class="btn btn-success" role="button">Create New Pizza</button>
     
         </div>
 
@@ -28,7 +28,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="masterpizzaid" value="{{pizza.masterpizzaid}}">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Pizza Name</span>
+                        <span class="input-group-text" id="basic-addon1">Pizza Name: </span>
                         <input type="text" value="{{pizza.masterpizzaname}}" name="masterpizzaname" class="form-control" placeholder="Pizza Name" aria-label="PizzaName" aria-describedby="basic-addon1">
                     </div>
 
@@ -44,14 +44,14 @@
                                 {% for topping in toppings %}
 
                                     {% if topping.mastertoppingid in pizza.toppings %}
-                                        <input name="Toppings" class="form-check-input checkbox-group" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}" checked="checked">
-                                        <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}">
+                                        <input name="Toppings" class="form-check-input checkbox-group" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}-{{pizza.masterpizzaid}}" checked="checked">
+                                        <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}-{{pizza.masterpizzaid}}">
                                             {{topping.mastertoppingname}} 
                                         </label>
                                         <br>
                                     {% else %}
-                                        <input name="Toppings" class="form-check-input checkbox-group" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}">
-                                        <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}">
+                                        <input name="Toppings" class="form-check-input checkbox-group" type="checkbox" value="{{topping.mastertoppingid}}" id="checkTopping_{{topping.mastertoppingid}}-{{pizza.masterpizzaid}}">
+                                        <label class="form-check-label" for="checkTopping_{{topping.mastertoppingid}}-{{pizza.masterpizzaid}}">
                                             {{topping.mastertoppingname}} 
                                         </label>
                                         <br>
