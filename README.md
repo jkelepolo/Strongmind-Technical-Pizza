@@ -27,7 +27,7 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 - Using your anaconda environment or python venv:
 
-        $ cd ../strongmind_pizza_app/
+        $ cd ../strongmind-technical-pizza/
         $ pip install -r requirements/local.txt
 
 
@@ -55,7 +55,7 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 
 #### Running unit tests
-    $ cd ../strongmind_pizza_app/
+    $ cd ../strongmind-technical-pizza/
     $ python manage.py test --keepdb
 
 
